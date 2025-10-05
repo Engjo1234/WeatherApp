@@ -7,6 +7,8 @@ import RBSheet from 'react-native-raw-bottom-sheet';
 
 export default function Settings() {
     const refRBSheet=useRef()
+    const WindRBSheet=useRef()
+
     const [unit, setUnit] = useState("Celsius")
   const [wind, setWind] = useState("m/s")
   const [notifications, setNotifications] = useState(false)
@@ -24,7 +26,9 @@ export default function Settings() {
     </View>
     <Text style={styles.secound_text}>Celsius</Text>
    </TouchableOpacity>
-   <TouchableOpacity style={styles.button}>
+   <TouchableOpacity 
+   onPress={()=>WindRBSheet.current.open()}
+   style={styles.button}>
     <View style={styles.arrow}>
     <Text style={styles.text}>Wind Speed</Text>
     <Icon name='chevron-right' size={20} style={{ color: theme.colors.light.text }} />
@@ -43,28 +47,34 @@ export default function Settings() {
   
 <RBSheet
   ref={refRBSheet}
-  
   >
         <Text style={[styles.text,{alignSelf:'center',}]}>Temperature unit</Text>
     <View style={{width:'100%',borderBottomWidth:1,borderColor:theme.colors.light.grey}}></View>
-    <View style={{alignItems:'center',justifyContent:'space-between',flex:1}}>
     <TouchableOpacity style={styles.bottomsheet}>
-        <Text style={[styles.secound_text,{marginBottom:0,marginLeft:5}]}>Celsius</Text>
+        <Text style={[styles.secound_text,{marginBottom:0,marginLeft:10}]}>Celsius</Text>
         <Icon name='chevron-right' size={20} style={{ color: theme.colors.light.text ,marginRight:5}} />
     </TouchableOpacity>
-    <View style={styles.bottomsheet}>
-        <Text style={[styles.secound_text,{marginBottom:0}]}>F</Text>
+    <TouchableOpacity style={styles.bottomsheet}>
+        <Text style={[styles.secound_text,{marginBottom:0,marginLeft:10}]}>F</Text>
         <Icon name='chevron-right' size={20} style={{ color: theme.colors.light.text }} />
-    </View>
-    <View style={styles.bottomsheet}>
-        <Text style={[styles.secound_text,{marginBottom:0}]}>F</Text>
-        <Icon name='chevron-right' size={20} style={{ color: theme.colors.light.text }} />
-    </View>
+    </TouchableOpacity> 
     
-    </View>
-    <TouchableOpacity style={{width:'90%',borderRadius:theme.spacing.xl,height:50,backgroundColor:theme.colors.light.card,alignItems:'center',justifyContent:'center'}}>
-    <Text style={styles.text}>Notifications</Text>
+  </RBSheet>
+
+  <RBSheet
+  ref={WindRBSheet}
+  >
+        <Text style={[styles.text,{alignSelf:'center',}]}>Wind Speed</Text>
+    <View style={{width:'100%',borderBottomWidth:1,borderColor:theme.colors.light.grey}}></View>
+    <TouchableOpacity style={styles.bottomsheet}>
+        <Text style={[styles.secound_text,{marginBottom:0,marginLeft:10}]}>m/s</Text>
+        <Icon name='chevron-right' size={20} style={{ color: theme.colors.light.text ,marginRight:5}} />
     </TouchableOpacity>
+    <TouchableOpacity style={styles.bottomsheet}>
+        <Text style={[styles.secound_text,{marginBottom:0,marginLeft:10}]}>km/h</Text>
+        <Icon name='chevron-right' size={20} style={{ color: theme.colors.light.text }} />
+    </TouchableOpacity> 
+    
   </RBSheet>
   </View>
   
@@ -114,7 +124,7 @@ const styles = StyleSheet.create({
  },
  bottomsheet:{
     width:'100%',
-    height:35,
+    height:80,
     borderBottomWidth:1,
     borderColor:theme.colors.light.grey,
     alignItems:'center',

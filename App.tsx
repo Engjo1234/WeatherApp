@@ -16,13 +16,13 @@ import store from './src/Redux/store'
 // I18nManager.forceRTL(false);
 export default function App() {
   return (
-   <Provider store={store}>
-    <Counter/>
-   </Provider>
+  //  <Provider store={store}>
+  //   <Counter/>
+  //  </Provider>
     // <Settings/>
-  //  <NavigationContainer>
-  //   <HomeStack/>
-  //  </NavigationContainer>
+   <NavigationContainer>
+    <HomeStack/>
+   </NavigationContainer>
 
   )
 }
